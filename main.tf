@@ -61,7 +61,7 @@ module "access_logs" {
 
 resource "aws_lb" "default" {
   count              = module.this.enabled ? 1 : 0
-  name               = module.this.id
+  name               = var.alb_name == "" ? module.this.id : var.alb_name
   tags               = module.this.tags
   internal           = var.internal
   load_balancer_type = "application"
